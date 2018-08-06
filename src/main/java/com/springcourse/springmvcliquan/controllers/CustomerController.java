@@ -41,7 +41,7 @@ public class CustomerController {
 
     @RequestMapping("/customer/new")
     public String newCustomer(Model model) {
-        model.addAttribute("cutomer", new Customer());
+        model.addAttribute("customer", new Customer());
         return "customerform";
     }
 
@@ -49,5 +49,11 @@ public class CustomerController {
     public String saveOrUpdateCustomer(Customer customer) {
         customerService.saveOrUpdateCustomer(customer);
         return "redirect:/customer/" + customer.getId();
+    }
+
+    @RequestMapping(value = "/customer/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model) {
+        model.addAttribute("customer", customerService.getCutomerById(id));
+        return "customerform";
     }
 }

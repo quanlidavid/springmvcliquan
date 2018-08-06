@@ -3,13 +3,10 @@ package com.springcourse.springmvcliquan.services;
 import com.springcourse.springmvcliquan.domain.Customer;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
     Map<Integer, Customer> customers;
 
     public CustomerServiceImpl() {
@@ -29,9 +26,22 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Customer saveOrUpdateCustomer(Customer customer) {
         if (customer != null) {
-            if (customer.getId()==null)
+            if (customer.getId() == null) {
+                customer.setId(getNextKey());
+            }
+            customers.put(customer.getId(), customer);
+            return customer;
+        } else {
+            throw new RuntimeException("customer cann't be null");
         }
-        return null;
+    }
+
+    private Integer getNextKey() {
+        if (customers.isEmpty()) {
+            return 1;
+        } else {
+            return Collections.max(customers.keySet()) + 1;
+        }
     }
 
     @Override
