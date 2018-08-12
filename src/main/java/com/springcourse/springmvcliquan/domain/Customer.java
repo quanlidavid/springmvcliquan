@@ -1,6 +1,6 @@
 package com.springcourse.springmvcliquan.domain;
 
-public class Customer {
+public class Customer implements DomainObject{
 
     private Integer id;
     private String firstName;
@@ -11,8 +11,7 @@ public class Customer {
     private String address2;
     private String city;
     private String state;
-    private String zip;
-    private String code;
+    private String zipCode;
 
     public Integer getId() {
         return id;
@@ -86,19 +85,12 @@ public class Customer {
         this.state = state;
     }
 
-    public String getZip() {
-        return zip;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 }

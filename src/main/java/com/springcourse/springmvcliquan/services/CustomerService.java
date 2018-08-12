@@ -4,12 +4,6 @@ import com.springcourse.springmvcliquan.domain.Customer;
 
 import java.util.List;
 
-public interface CustomerService {
-    List<Customer> listCustomers();
+public interface CustomerService extends CRUDService<Customer> {
 
-    Customer getCutomerById(Integer id);
-
-    Customer saveOrUpdateCustomer(Customer customer);
-
-    void deleteCustomer(Integer id);
 }

@@ -10,7 +10,7 @@
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
-    <link href="../static/css/spring-core.css"
+    <link href="../../static/css/spring-core.css"
           th:href="@{css/spring-core.css}" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -25,25 +25,23 @@
                 <th>City</th>
                 <th>Phone Number</th>
                 <th>Email</th>
-                <th>Code</th>
                 <th>State</th>
-                <th>Zip</th>
+                <th>ZipCode</th>
                 <th>Address line one</th>
                 <th>Address line two</th>
                 <th>Action</th>
             </tr>
             <tr th:each="customer : ${customers}">
                 <td>
-                    <a th:href="${'/customer/'+customer.id}" th:text="${customer.id}"></a>
+                    <a th:href="${'/customer/show/'+customer.id}" th:text="${customer.id}"></a>
                 </td>
                 <td th:text="${customer.firstName}"></td>
                 <td th:text="${customer.lastName}"></td>
                 <td th:text="${customer.city}"></td>
                 <td th:text="${customer.phoneNumber}"></td>
                 <td th:text="${customer.email}"></td>
-                <td th:text="${customer.code}"></td>
                 <td th:text="${customer.state}"></td>
-                <td th:text="${customer.zip}"></td>
+                <td th:text="${customer.zipCode}"></td>
                 <td th:text="${customer.address1}"></td>
                 <td th:text="${customer.address2}"></td>
                 <td>

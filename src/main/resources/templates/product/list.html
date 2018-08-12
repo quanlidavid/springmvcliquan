@@ -10,7 +10,7 @@
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
-    <link href="../static/css/spring-core.css"
+    <link href="../../static/css/spring-core.css"
           th:href="@{css/spring-core.css}" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -28,7 +28,7 @@
             <tr th:each="product : ${products}">
                 <td th:text="${product.id}"></td>
                 <td>
-                    <a th:href="${'/product/'+product.id}" th:text="${product.description}"></a>
+                    <a th:href="${'/product/show/'+product.id}" th:text="${product.description}"></a>
                 </td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.imageUrl}"></td>

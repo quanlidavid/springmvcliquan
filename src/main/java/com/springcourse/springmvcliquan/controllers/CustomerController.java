@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+@RequestMapping("/customer")
 @Controller
 public class CustomerController {
     private CustomerService customerService;
@@ -20,40 +21,40 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @RequestMapping("/customers")
+    @RequestMapping({"/list", "/"})
     public String listCustomers(Model model) {
-        List<Customer> customers = customerService.listCustomers();
+        List<Customer> customers = (List<Customer>) customerService.listAll();
         model.addAttribute("customers", customers);
-        return "customers";
+        return "customer/list";
     }
 
-    @RequestMapping("/customer/{id}")
+    @RequestMapping("/show/{id}")
     public String getCustomer(@PathVariable Integer id, Model model) {
-        model.addAttribute("customer", customerService.getCutomerById(id));
-        return "customer";
+        model.addAttribute("customer", customerService.getById(id));
+        return "customer/show";
     }
 
-    @RequestMapping("/customer/delete/{id}")
+    @RequestMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable Integer id) {
-        customerService.deleteCustomer(id);
-        return "redirect:/customers";
+        customerService.delete(id);
+        return "redirect:/customer/list";
     }
 
-    @RequestMapping("/customer/new")
+    @RequestMapping("/new")
     public String newCustomer(Model model) {
         model.addAttribute("customer", new Customer());
-        return "customerform";
+        return "customer/customerform";
     }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String saveOrUpdateCustomer(Customer customer) {
-        customerService.saveOrUpdateCustomer(customer);
-        return "redirect:/customer/" + customer.getId();
+        customerService.saveOrUpdate(customer);
+        return "redirect:/customer/show/" + customer.getId();
     }
 
-    @RequestMapping(value = "/customer/edit/{id}")
+    @RequestMapping(value = "/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("customer", customerService.getCutomerById(id));
-        return "customerform";
+        model.addAttribute("customer", customerService.getById(id));
+        return "customer/customerform";
     }
 }

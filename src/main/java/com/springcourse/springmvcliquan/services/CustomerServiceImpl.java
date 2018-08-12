@@ -1,56 +1,37 @@
 package com.springcourse.springmvcliquan.services;
 
 import com.springcourse.springmvcliquan.domain.Customer;
+import com.springcourse.springmvcliquan.domain.DomainObject;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class CustomerServiceImpl implements CustomerService {
-    Map<Integer, Customer> customers;
+public class CustomerServiceImpl extends AbstractMapService implements CustomerService {
 
-    public CustomerServiceImpl() {
-        loadCustomers();
+    @Override
+    public List<DomainObject> listAll() {
+        return super.listAll();
     }
 
     @Override
-    public List<Customer> listCustomers() {
-        return new ArrayList<>(customers.values());
+    public Customer getById(Integer id) {
+        return (Customer)super.getById(id);
     }
 
     @Override
-    public Customer getCutomerById(Integer id) {
-        return customers.get(id);
+    public Customer saveOrUpdate(Customer domainObject) {
+        return (Customer)super.saveOrUpdate(domainObject);
     }
 
     @Override
-    public Customer saveOrUpdateCustomer(Customer customer) {
-        if (customer != null) {
-            if (customer.getId() == null) {
-                customer.setId(getNextKey());
-            }
-            customers.put(customer.getId(), customer);
-            return customer;
-        } else {
-            throw new RuntimeException("customer cann't be null");
-        }
-    }
-
-    private Integer getNextKey() {
-        if (customers.isEmpty()) {
-            return 1;
-        } else {
-            return Collections.max(customers.keySet()) + 1;
-        }
+    public void delete(Integer id) {
+        super.delete(id);
     }
 
     @Override
-    public void deleteCustomer(Integer id) {
-        customers.remove(id);
-    }
-
-    private void loadCustomers() {
-        customers = new HashMap<>();
+    protected void loadDomainObjects() {
+        domainMap = new HashMap<>();
 
         Customer customer1 = new Customer();
         customer1.setId(1);
@@ -60,11 +41,10 @@ public class CustomerServiceImpl implements CustomerService {
         customer1.setAddress2("baijia cheng");
         customer1.setCity("beijing");
         customer1.setEmail("david@qq.com");
-        customer1.setCode("010");
         customer1.setPhoneNumber("13810960310");
         customer1.setState("beijng");
-        customer1.setZip("102208");
-        customers.put(1, customer1);
+        customer1.setZipCode("102208");
+        domainMap.put(1, customer1);
 
         Customer customer2 = new Customer();
         customer2.setId(2);
@@ -74,11 +54,10 @@ public class CustomerServiceImpl implements CustomerService {
         customer2.setAddress2("shui zhen");
         customer2.setCity("qing dao");
         customer2.setEmail("jack@qq.com");
-        customer2.setCode("320");
         customer2.setPhoneNumber("13267842353");
         customer2.setState("shan dong");
-        customer2.setZip("745463");
-        customers.put(2, customer2);
+        customer2.setZipCode("745463");
+        domainMap.put(2, customer2);
 
         Customer customer3 = new Customer();
         customer3.setId(3);
@@ -88,11 +67,10 @@ public class CustomerServiceImpl implements CustomerService {
         customer3.setAddress2("luoma");
         customer3.setCity("qing huang dao");
         customer3.setEmail("jill@qq.com");
-        customer3.setCode("020");
         customer3.setPhoneNumber("13762539456");
         customer3.setState("he bei");
-        customer3.setZip("203852");
-        customers.put(3, customer3);
+        customer3.setZipCode("203852");
+        domainMap.put(3, customer3);
 
     }
 }

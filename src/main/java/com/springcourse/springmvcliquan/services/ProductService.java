@@ -4,12 +4,6 @@ import com.springcourse.springmvcliquan.domain.Product;
 
 import java.util.List;
 
-public interface ProductService {
-    List<Product> listAllProducts();
+public interface ProductService extends CRUDService<Product>{
 
-    Product getProductById(Integer id);
-
-    Product saveOrUpdateProduct(Product product);
-
-    void deleteProduct(Integer id);
 }

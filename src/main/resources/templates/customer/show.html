@@ -10,7 +10,7 @@
     <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
             th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
 
-    <link href="../static/css/spring-core.css"
+    <link href="../../static/css/spring-core.css"
           th:href="@{css/spring-core.css}" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -49,21 +49,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Code:</label>
-                    <div class="col-sm-8">
-                        <p class="form-control-static" th:text="${customer.code}">Image</p>
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-sm-4 control-label">State:</label>
                     <div class="col-sm-8">
                         <p class="form-control-static" th:text="${customer.state}">Image</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Zip:</label>
+                    <label class="col-sm-4 control-label">ZipCode:</label>
                     <div class="col-sm-8">
-                        <p class="form-control-static" th:text="${customer.zip}">Image</p>
+                        <p class="form-control-static" th:text="${customer.zipCode}">Image</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -91,7 +85,7 @@
                     </div>
                 </div>
             </form>
-            <a href="/customers">List Products</a>
+            <a href="/customer/">List Products</a>
         </div>
     </div>
 </div>
